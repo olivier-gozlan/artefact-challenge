@@ -12,6 +12,7 @@ train_path = f"{DATA_FOLDER}/yellow_tripdata_2021-01.parquet"
 test_path = f"{DATA_FOLDER}/yellow_tripdata_2021-02.parquet"
 predict_path = f"{DATA_FOLDER}/yellow_tripdata_2021-03.parquet"
 
+
 def load_datas():
   if not os.path.exists(DATA_FOLDER):
     os.makedirs(DATA_FOLDER)

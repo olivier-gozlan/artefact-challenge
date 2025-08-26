@@ -4,3 +4,10 @@ virtualenv # This is required to serve the MLflow Model server locally
 ipykernel
 seaborn
 matplotlib
+pandas
+numpy
+seaborn
+scikit-learn
+gdown
+typing
+scipy
