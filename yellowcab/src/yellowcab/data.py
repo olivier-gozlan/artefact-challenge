@@ -2,10 +2,12 @@ import gdown
 import os
 import pandas as pd
 import numpy as np
+import loguru
 
 from sklearn.feature_extraction import DictVectorizer
 
 from typing import List
+logger = loguru.logger
 
 DATA_FOLDER = "./data"
 train_path = f"{DATA_FOLDER}/yellow_tripdata_2021-01.parquet"
@@ -39,6 +41,7 @@ def load_datas():
 def load_data(path: str):
     return pd.read_parquet(path)
 
+
 def compute_target(
     df: pd.DataFrame,
     pickup_column: str = "tpep_pickup_datetime",
@@ -70,7 +73,7 @@ def extract_x_y(
     dv: DictVectorizer = None,
     with_target: bool = True,
 ) -> dict:
-
+    logger.info(f"df dans extract:{df}")
     if categorical_cols is None:
         categorical_cols = ["PULocationID", "DOLocationID", "passenger_count"]
     dicts = df[categorical_cols].to_dict(orient="records")
@@ -84,3 +87,10 @@ def extract_x_y(
 
     x = dv.transform(dicts)
     return x, y, dv
+
+def preprocess_data(df):
+    df = compute_target(df)
+    df = filter_outliers(df)
+    df = encode_categorical_cols(df)
+    logger.info(f'preprocess_data return:{df}')
+    return df
