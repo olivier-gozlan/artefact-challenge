@@ -1,12 +1,13 @@
 import pandas as pd
 import numpy as np
-
+from yellowcab.registry import save_model
 from sklearn.metrics import root_mean_squared_error
 
 from scipy.sparse import csr_matrix
 
 def train_model(model, x_train: csr_matrix, y_train: np.ndarray):
     model.fit(x_train, y_train)
+    save_model(model,"forest_model")
     return model
 
 
