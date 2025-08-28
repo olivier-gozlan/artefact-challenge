@@ -12,3 +12,6 @@ gdown
 typing
 scipy
 prefect
+fastapi
+uvicorn
+python-multipart
