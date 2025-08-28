@@ -3,8 +3,8 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 import loguru
-
-
+from yellowcab import data
+from yellowcab.data import load_data
 
 from yellowcab import task
 from yellowcab.task import train
@@ -61,4 +61,6 @@ logger = loguru.logger
 if __name__ == "__main__" :
 #  load_datas() plus besoin deja la
   train()
+
+  
  

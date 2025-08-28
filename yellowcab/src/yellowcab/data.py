@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import numpy as np
 import loguru
-
+from yellowcab.registry import save_model
 from sklearn.feature_extraction import DictVectorizer
 
 from typing import List
@@ -83,6 +83,7 @@ def extract_x_y(
         if dv is None:
             dv = DictVectorizer()
             dv.fit(dicts)
+            save_model(dv,"vectorizer")
         y = df["duration"].values
 
     x = dv.transform(dicts)
